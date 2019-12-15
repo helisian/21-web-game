@@ -1,0 +1,79 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-image: url("./Casino_Background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "header"
+        "gameMain"
+        "gamePlay";
+    font-family: "Inconsolata", monospace;;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #A86EE3;
+    font-size: 60px;
+    font-style: bold;
+    text-shadow:
+    -1px -1px 0 white,  
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
+}
+
+.gameMain {
+    grid-area: gameMain;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-areas: 
+        "playerScore playerCards compCards compScore";
+    flex-direction: row;
+    justify-items: center;
+    align-items: center
+}
+
+.start {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    display: flex;
+    justify-content: center;
+    align-content: center
+}
+
+.gamePlay {
+    grid-area: gamePlay;
+    display: flex;
+    justify-content: space-evenly
+}
+
+.hit {
+    display: flex;
+    justify-content: center;
+    align-content: center
+}
+
+.stay {
+    display: flex;
+    justify-content: center;
+    align-content: center
+}
