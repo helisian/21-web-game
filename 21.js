@@ -8,35 +8,34 @@ gameMainPlayerScore.setAttribute("class", "gameMainPlayerScore")
 let gameMainCompCards = document.createElement("div")
 gameMainCompCards.setAttribute("class", "gameMainCompCards")
 let gameMainCompScore = document.createElement("div")
-gameMainCompScore.setAttribute("class", "ggameMainCompScore")
-let stay = document.createElement("button")
+gameMainCompScore.setAttribute("class", "gameMainCompScore")
 let hit = document.createElement("button")
+hit.setAttribute("value", "HIT")
+hit.innerText = "HIT"
+let hitDiv = document.querySelector(".hit")
+let stay = document.createElement("button")
+stay.innerText = "STAY"
+let stayDiv = document.querySelector(".stay")
 
-
-try { //Try runs once as page loads
-    start.addEventListener("click", () => {
-        gameMain.innerHTML = ""
-        
-        const fetchData = async (url, callback) => {
-        await axios.get(url).then(res => { 
-            callback(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+try { 
+    
+    const fetchData = async (url, callback) => {
+        await axios.get(url).then(res => callback(res.data)) 
     }
-    })
-}catch(err) {
-    console.log(err)
+}catch(err) {console.log(err)}
 
-}
+start.addEventListener("click", () => {
+    gameMain.innerHTML = ""
+    hitDiv.appendChild(hit)
+    stayDiv.appendChild(stay)
+
+})
+    
 
 
+//https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
 
-
-https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
-
-https://deckofcardsapi.com/api/deck/${deckID/draw/?count=2
+//https://deckofcardsapi.com/api/deck/${deckID/draw/?count=2
 
 
 
