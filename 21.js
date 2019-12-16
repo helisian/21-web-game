@@ -39,14 +39,14 @@ const renderData = (data) => {
 }
 
 const renderScore = (data) => {
-    
+
 }
 
 start.addEventListener("click", () => {
     gameMain.innerHTML = ""
     hitDiv.appendChild(hit)
     stayDiv.appendChild(stay)
-    fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", fetchDeckId)
+    fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", () => {})
     fetchData("https://deckofcardsapi.com/api/deck/${deckID/draw/?count=2",)
 })
     
