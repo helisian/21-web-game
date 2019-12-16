@@ -5,10 +5,16 @@ let gameMainPlayerCards = document.createElement("div")
 gameMainPlayerCards.setAttribute("class", "gameMainPlayerCard")
 let gameMainPlayerScore = document.createElement("div")
 gameMainPlayerScore.setAttribute("class", "gameMainPlayerScore")
+let playerScoreTitle = document.createElement("h2")
+playerScoreTitle.innerText = "SCORE"
+let playerScore = document.createElement("h2")
 let gameMainCompCards = document.createElement("div")
 gameMainCompCards.setAttribute("class", "gameMainCompCards")
 let gameMainCompScore = document.createElement("div")
 gameMainCompScore.setAttribute("class", "gameMainCompScore")
+let compScore = document.createElement("h2")
+let compScoreTitle = document.createElement("h2")
+compScoreTitle.innerText = "SCORE"
 let hit = document.createElement("button")
 hit.setAttribute("value", "HIT")
 hit.innerText = "HIT"
@@ -16,24 +22,36 @@ let hitDiv = document.querySelector(".hit")
 let stay = document.createElement("button")
 stay.innerText = "STAY"
 let stayDiv = document.querySelector(".stay")
+let deckId = ""
 
 try { 
-    
-    const fetchData = async (url, callback) => {
+        const fetchData = async (url, callback) => {
         await axios.get(url).then(res => callback(res.data)) 
     }
 }catch(err) {console.log(err)}
+
+const fetchDeckId = (data) => {
+    let deckId = data.deck_id
+}
+
+const renderData = (data) => {
+
+}
+
+const renderScore = (data) => {
+    
+}
 
 start.addEventListener("click", () => {
     gameMain.innerHTML = ""
     hitDiv.appendChild(hit)
     stayDiv.appendChild(stay)
-
+    fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", fetchDeckId)
+    fetchData("https://deckofcardsapi.com/api/deck/${deckID/draw/?count=2",)
 })
     
 
 
-//https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
 
 //https://deckofcardsapi.com/api/deck/${deckID/draw/?count=2
 
