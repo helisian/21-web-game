@@ -33,13 +33,18 @@ try {
         deckId = data.deck_id
     }
 
-    const renderData = (data) => {
-        data.forEach(el, () => {
-            let image = document.createElement("img")
-            image.src = el["image"]
-            gameMainPlayerCards.appendChild("image")
+    const renderStartData = (data) => {
+        let card = data["cards"]
+        let score = 0
+        card.forEach(el => {
+            score += el.value
+            playerScore.innerText = score
+            gameMainPlayerScore.appendChild(playerScore)
+            let img = document.createElement("img")
+            img.src = el.image
+            gameMainPlayerCards.appendChild(img)
         })
-        
+        gameMain.appendChild(gameMainPlayerCards) 
     }
     
     // const renderScore = (data) => {
@@ -51,9 +56,9 @@ try {
         hitDiv.appendChild(hit)
         stayDiv.appendChild(stay)
         fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", (data) => deckId = data.deck_id)
-        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`,renderData)
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`,renderStartData)
     })
-        
+
         
 }catch(err) {console.log(err)}
         
