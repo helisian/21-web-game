@@ -1,4 +1,4 @@
-// let deckId = ""
+let deckId = ""
 let score = 0
 let start = document.querySelector("#start")
 let gameMain = document.querySelector(".gameMain")
@@ -31,8 +31,8 @@ try {
     }
     
     const setCardValue = (data) => {
-        if (typeof data === "number") {
-            return data
+        if (typeof Number(data) === "number") {
+            return Number(data)
         } else if (data === "ACE") {
             if (score >= 13) {
                 return 1
@@ -57,7 +57,6 @@ try {
     }
     
     start.addEventListener("click", () => {
-        let deckId = ""
         gameMain.innerHTML = ""
         hitDiv.appendChild(hit)
         stayDiv.appendChild(stay)
