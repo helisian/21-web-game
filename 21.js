@@ -30,7 +30,6 @@ try {
     await axios.get(url).then(res => callback(res.data))
     }
 
-
     const setCardValue = (data) => {
         switch(data) {
             case "JACK" || "QUEEN" || "KING":
@@ -43,22 +42,8 @@ try {
                 }
             default:
                 return Number(data)
-      }
+        }
     }
-    
-    // const setCardValue = (data) => {
-    //     if (typeof Number(data) === "number") {
-    //         return Number(data)
-    //     } else if (data === "ACE") {
-    //         if (score >= 13) {
-    //             return 1
-    //         } else {
-    //             return 11
-    //         }
-    //     } else if (data === "JACK" || data === "QUEEN" || data === "KING"){
-    //         return 10
-    //     }
-    // }
 
     const renderData = (data) => {
         let card = data["cards"]
