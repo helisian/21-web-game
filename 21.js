@@ -27,12 +27,15 @@ let stayDiv = document.querySelector(".stay")
 
 try { 
     const fetchData = async (url, callback) => {
-    await axios.get(url).then(res => callback(res.data))
+    let res = await axios.get(url)
+    callback(res.data)
     }
 
     const setCardValue = (data) => {
         switch(data) {
-            case "JACK", "QUEEN", "KING":
+            case "JACK":
+            case "QUEEN":
+            case "KING":
                 return 10
             case "ACE":
                 if (score >= 13) {
@@ -45,16 +48,16 @@ try {
         }
     }
 
-    const renderData = (data) => {
+    const renderPlayerData = (data) => {
         let card = data["cards"]
         card.forEach(el => {
             score += setCardValue(el.value)
-            playerScore.innerText = score
-            gameMainPlayerScore.appendChild(playerScore)
             let img = document.createElement("img")
             img.src = el.image
             gameMainPlayerCards.appendChild(img)
         })
+        playerScore.innerText = score
+        gameMainPlayerScore.appendChild(playerScore)
     }
 
     const renderCompData = (data) => {
@@ -62,12 +65,13 @@ try {
         let score = 0
         card.forEach(el => {
             score += setCardValue(el.value)
-            compScore.innerText = score
-            gameMainCompScore.appendChild(compScore)
+            console.log(setCardValue(el.value))
             let img = document.createElement("img")
             img.src = el.image
             gameMainCompCards.appendChild(img)
         })
+        compScore.innerText = score
+        gameMainCompScore.appendChild(compScore)
     }
     
     fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", (data) => deckId = data.deck_id)
@@ -76,14 +80,14 @@ try {
         gameMain.innerHTML = ""
         hitDiv.appendChild(hit)
         stayDiv.appendChild(stay)
-        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`, renderData)
-        gameMainPlayerScore.appendChild(playerScoreTitle)
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`, renderPlayerData)
         gameMain.appendChild(gameMainPlayerCards)
         gameMain.appendChild(gameMainPlayerScore) 
+        gameMainPlayerScore.appendChild(playerScoreTitle)
     })
     
     hit.addEventListener("click", () => {
-        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`, renderData)
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`, renderPlayerData)
         if (score > 21) {
 
         }
@@ -91,9 +95,9 @@ try {
     
     stay.addEventListener("click", () => {
         fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`, renderCompData)
-        gameMainCompScore.appendChild(compScoreTitle)
         gameMain.appendChild(gameMainCompCards)
         gameMain.appendChild(gameMainCompScore) 
+        gameMainCompScore.appendChild(compScoreTitle)
     }) 
 
 }catch(err) {console.log(err)}
