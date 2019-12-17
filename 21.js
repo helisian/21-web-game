@@ -33,32 +33,32 @@ try {
 
     const setCardValue = (data) => {
         switch(data) {
-            case data === "JACK" || data === "QUEEN" || data === "KING":
+            case "JACK" || "QUEEN" || "KING":
                 return 10
-            case data === "ACE":
+            case "ACE":
                 if (score >= 13) {
                     return 1
                 } else {
                     return 11
                 }
             default:
-                return data
+                return Number(data)
       }
     }
     
-    const setCardValue = (data) => {
-        if (typeof Number(data) === "number") {
-            return Number(data)
-        } else if (data === "ACE") {
-            if (score >= 13) {
-                return 1
-            } else {
-                return 11
-            }
-        } else if (typeof data === "string"){
-            return 10
-        }
-    }
+    // const setCardValue = (data) => {
+    //     if (typeof Number(data) === "number") {
+    //         return Number(data)
+    //     } else if (data === "ACE") {
+    //         if (score >= 13) {
+    //             return 1
+    //         } else {
+    //             return 11
+    //         }
+    //     } else if (data === "JACK" || data === "QUEEN" || data === "KING"){
+    //         return 10
+    //     }
+    // }
 
     const renderData = (data) => {
         let card = data["cards"]
