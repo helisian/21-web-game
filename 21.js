@@ -8,7 +8,7 @@ gameMainPlayerCards.setAttribute("class", "gameMainPlayerCards")
 let gameMainPlayerScore = document.createElement("div")
 gameMainPlayerScore.setAttribute("class", "gameMainPlayerScore")
 let playerScoreTitle = document.createElement("h2")
-playerScoreTitle.innerText = "YOUR SCORE"
+playerScoreTitle.innerText = "YOUR SCORE:"
 let playerScore = document.createElement("h2")
 let gameMainCompCards = document.createElement("div")
 gameMainCompCards.setAttribute("class", "gameMainCompCards")
@@ -16,7 +16,7 @@ let gameMainCompScore = document.createElement("div")
 gameMainCompScore.setAttribute("class", "gameMainCompScore")
 let compScore = document.createElement("h2")
 let compScoreTitle = document.createElement("h2")
-compScoreTitle.innerText = "DEALER SCORE"
+compScoreTitle.innerText = "DEALER SCORE:"
 let hit = document.createElement("button")
 hit.setAttribute("value", "HIT")
 hit.innerText = "HIT"
@@ -90,7 +90,7 @@ try {
     })
     
     stay.addEventListener("click", () => {
-        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`, renderData)
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`, renderCompData)
         gameMainCompScore.appendChild(compScoreTitle)
         gameMain.appendChild(gameMainCompCards)
         gameMain.appendChild(gameMainCompScore) 
