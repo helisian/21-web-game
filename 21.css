@@ -59,7 +59,7 @@ body {
     display:flex;
     justify-content: center;
     max-width: 35%;
-    top: 50px
+    top: 60px
 }
 
 #logo {
@@ -73,9 +73,11 @@ body {
 
 .gameMain {
     grid-area: gameMain;
+    min-width: 100%;
+    min-height: 100%;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr 3fr;
     grid-template-areas: 
         "playerScore playerCards compCards compScore";
     flex-direction: row;
@@ -83,9 +85,38 @@ body {
     align-items: center
 }
 
+
 .start {
     grid-column-start: 2;
     grid-column-end: 4;
+    min-width: 100%
+}
+
+.gameMainPlayerCards, .gameMainCompCards, .gameMainPlayerScore, .gameMainCompScore {
+    max-height: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.gameMainPlayerCards, .gameMainCompCards {
+    flex-wrap: wrap;
+}
+
+.gameMainPlayerCards, .gameMainCompCards > img {
+    min-width: 50%
+}
+
+.gameMainPlayerScore, .gameMainCompScore {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow:
+    -1px -1px 0 black,  
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
 .gamePlay {
@@ -94,7 +125,7 @@ body {
     justify-content: space-evenly;
 }
 
-.hit, .stay, .start {
+.hit, .stay {
     width: 30%;
     display: flex;
     justify-content: center;

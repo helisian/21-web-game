@@ -4,11 +4,11 @@ let start = document.querySelector("#start")
 let gameMain = document.querySelector(".gameMain")
 let gamePlay = document.querySelector(".gamePlay")
 let gameMainPlayerCards = document.createElement("div")
-gameMainPlayerCards.setAttribute("class", "gameMainPlayerCard")
+gameMainPlayerCards.setAttribute("class", "gameMainPlayerCards")
 let gameMainPlayerScore = document.createElement("div")
 gameMainPlayerScore.setAttribute("class", "gameMainPlayerScore")
 let playerScoreTitle = document.createElement("h2")
-playerScoreTitle.innerText = "SCORE"
+playerScoreTitle.innerText = "YOUR SCORE"
 let playerScore = document.createElement("h2")
 let gameMainCompCards = document.createElement("div")
 gameMainCompCards.setAttribute("class", "gameMainCompCards")
@@ -16,7 +16,7 @@ let gameMainCompScore = document.createElement("div")
 gameMainCompScore.setAttribute("class", "gameMainCompScore")
 let compScore = document.createElement("h2")
 let compScoreTitle = document.createElement("h2")
-compScoreTitle.innerText = "SCORE"
+compScoreTitle.innerText = "DEALER SCORE"
 let hit = document.createElement("button")
 hit.setAttribute("value", "HIT")
 hit.innerText = "HIT"
@@ -56,12 +56,14 @@ try {
         })
     }
     
+    fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", (data) => deckId = data.deck_id)
+    
     start.addEventListener("click", () => {
         gameMain.innerHTML = ""
         hitDiv.appendChild(hit)
         stayDiv.appendChild(stay)
-        fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", (data) => deckId = data.deck_id)
         fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`, renderData)
+        gameMainPlayerScore.appendChild(playerScoreTitle)
         gameMain.appendChild(gameMainPlayerCards)
         gameMain.appendChild(gameMainPlayerScore) 
     })
