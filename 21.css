@@ -58,7 +58,7 @@ body {
     position: relative;
     display:flex;
     justify-content: center;
-    max-width: 35%;
+    max-width: 30%;
     top: 60px
 }
 
@@ -89,7 +89,8 @@ body {
 .start {
     grid-column-start: 2;
     grid-column-end: 4;
-    min-width: 100%
+    min-width: 100%;
+    z-index: 1
 }
 
 .gameMainPlayerCards, .gameMainCompCards, .gameMainPlayerScore, .gameMainCompScore {

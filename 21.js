@@ -32,7 +32,7 @@ try {
 
     const setCardValue = (data) => {
         switch(data) {
-            case "JACK" || "QUEEN" || "KING":
+            case "JACK", "QUEEN", "KING":
                 return 10
             case "ACE":
                 if (score >= 13) {
@@ -56,6 +56,19 @@ try {
             gameMainPlayerCards.appendChild(img)
         })
     }
+
+    const renderCompData = (data) => {
+        let card = data["cards"]
+        let score = 0
+        card.forEach(el => {
+            score += setCardValue(el.value)
+            compScore.innerText = score
+            gameMainCompScore.appendChild(compScore)
+            let img = document.createElement("img")
+            img.src = el.image
+            gameMainCompCards.appendChild(img)
+        })
+    }
     
     fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", (data) => deckId = data.deck_id)
     
@@ -71,10 +84,17 @@ try {
     
     hit.addEventListener("click", () => {
         fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`, renderData)
-            
-        
+        if (score > 21) {
 
+        }
     })
+    
+    stay.addEventListener("click", () => {
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=3`, renderData)
+        gameMainCompScore.appendChild(compScoreTitle)
+        gameMain.appendChild(gameMainCompCards)
+        gameMain.appendChild(gameMainCompScore) 
+    }) 
 
 }catch(err) {console.log(err)}
         
