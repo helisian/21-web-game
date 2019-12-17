@@ -1,3 +1,4 @@
+let deckId = ""
 let start = document.querySelector("#start")
 let gameMain = document.querySelector(".gameMain")
 let gamePlay = document.querySelector(".gamePlay")
@@ -22,38 +23,41 @@ let hitDiv = document.querySelector(".hit")
 let stay = document.createElement("button")
 stay.innerText = "STAY"
 let stayDiv = document.querySelector(".stay")
-let deckId = ""
 
 try { 
-        const fetchData = async (url, callback) => {
-        await axios.get(url).then(res => callback(res.data)) 
+    const fetchData = async (url, callback) => {
+    await axios.get(url).then(res => callback(res.data))
     }
-}catch(err) {console.log(err)}
-
-const fetchDeckId = (data) => {
-    let deckId = data.deck_id
-}
-
-const renderData = (data) => {
-
-}
-
-const renderScore = (data) => {
-
-}
-
-start.addEventListener("click", () => {
-    gameMain.innerHTML = ""
-    hitDiv.appendChild(hit)
-    stayDiv.appendChild(stay)
-    fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", () => {})
-    fetchData("https://deckofcardsapi.com/api/deck/${deckID/draw/?count=2",)
-})
     
+    const deckIdFunc = (data) => {
+        deckId = data.deck_id
+    }
 
-
-
-//https://deckofcardsapi.com/api/deck/${deckID/draw/?count=2
+    const renderData = (data) => {
+        data.forEach(el, () => {
+            let image = document.createElement("img")
+            image.src = el["image"]
+            gameMainPlayerCards.appendChild("image")
+        })
+        
+    }
+    
+    // const renderScore = (data) => {
+        
+        // }
+        
+    start.addEventListener("click", () => {
+        gameMain.innerHTML = ""
+        hitDiv.appendChild(hit)
+        stayDiv.appendChild(stay)
+        fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", (data) => deckId = data.deck_id)
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`,renderData)
+    })
+        
+        
+}catch(err) {console.log(err)}
+        
+        
 
 
 
