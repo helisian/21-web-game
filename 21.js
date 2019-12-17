@@ -29,6 +29,22 @@ try {
     const fetchData = async (url, callback) => {
     await axios.get(url).then(res => callback(res.data))
     }
+
+
+    const setCardValue = (data) => {
+        switch(data) {
+            case data === "JACK" || data === "QUEEN" || data === "KING":
+                return 10
+            case data === "ACE":
+                if (score >= 13) {
+                    return 1
+                } else {
+                    return 11
+                }
+            default:
+                return data
+      }
+    }
     
     const setCardValue = (data) => {
         if (typeof Number(data) === "number") {
