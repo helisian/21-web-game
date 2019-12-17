@@ -8,7 +8,7 @@ gameMainPlayerCards.setAttribute("class", "gameMainPlayerCards")
 let gameMainPlayerScore = document.createElement("div")
 gameMainPlayerScore.setAttribute("class", "gameMainPlayerScore")
 let playerScoreTitle = document.createElement("h2")
-playerScoreTitle.innerText = "YOUR SCORE:"
+playerScoreTitle.innerText = "PLAYER SCORE"
 let playerScore = document.createElement("h2")
 let gameMainCompCards = document.createElement("div")
 gameMainCompCards.setAttribute("class", "gameMainCompCards")
@@ -65,7 +65,6 @@ try {
         let score = 0
         card.forEach(el => {
             score += setCardValue(el.value)
-            console.log(setCardValue(el.value))
             let img = document.createElement("img")
             img.src = el.image
             gameMainCompCards.appendChild(img)
