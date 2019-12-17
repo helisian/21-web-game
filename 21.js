@@ -1,4 +1,5 @@
-let deckId = ""
+// let deckId = ""
+let score = 0
 let start = document.querySelector("#start")
 let gameMain = document.querySelector(".gameMain")
 let gamePlay = document.querySelector(".gamePlay")
@@ -29,37 +30,50 @@ try {
     await axios.get(url).then(res => callback(res.data))
     }
     
-    const deckIdFunc = (data) => {
-        deckId = data.deck_id
+    const setCardValue = (data) => {
+        if (typeof data === "number") {
+            return data
+        } else if (data === "ACE") {
+            if (score >= 13) {
+                return 1
+            } else {
+                return 11
+            }
+        } else if (typeof data === "string"){
+            return 10
+        }
     }
 
-    const renderStartData = (data) => {
+    const renderData = (data) => {
         let card = data["cards"]
-        let score = 0
         card.forEach(el => {
-            score += el.value
+            score += setCardValue(el.value)
             playerScore.innerText = score
             gameMainPlayerScore.appendChild(playerScore)
             let img = document.createElement("img")
             img.src = el.image
             gameMainPlayerCards.appendChild(img)
         })
-        gameMain.appendChild(gameMainPlayerCards) 
     }
     
-    // const renderScore = (data) => {
-        
-        // }
-        
     start.addEventListener("click", () => {
+        let deckId = ""
         gameMain.innerHTML = ""
         hitDiv.appendChild(hit)
         stayDiv.appendChild(stay)
         fetchData("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", (data) => deckId = data.deck_id)
-        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`,renderStartData)
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`, renderData)
+        gameMain.appendChild(gameMainPlayerCards)
+        gameMain.appendChild(gameMainPlayerScore) 
+    })
+    
+    hit.addEventListener("click", () => {
+        fetchData(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`, renderData)
+            
+        
+
     })
 
-        
 }catch(err) {console.log(err)}
         
         
@@ -83,10 +97,3 @@ try {
 // Face cards (J,Q,K) count as 10.
 // Ace can count as a 1 or an 11 depending on which value helps the hand the most.
 
-
-
-
-
-
-// <button type="submit" id="hit" name="hit">HIT</button>
-//<button type="submit" id="stay" name="stay">STAY</button>
